@@ -32,12 +32,10 @@ const TopMovies = () => {
     setLoading(false);
   };
 
-  // initial + page change fetch
   useEffect(() => {
     fetchMovies(page);
   }, [page]);
 
-  // infinite scroll listener
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 200 >=
@@ -55,36 +53,35 @@ const TopMovies = () => {
   }, [handleScroll]);
 
   return (
-    <div className="bg-black min-h-screen px-6 py-8 relative">
+    <div className="bg-black min-h-screen px-3 md:px-6 py-6 md:py-8 relative">
 
       {/* 🔙 BACK BUTTON */}
       <button
         onClick={() => navigate(-1)}
-        className="fixed top-5 left-5 z-50 flex items-center gap-2 
-                   bg-transparent hover:bg-white/10 
-                   backdrop-blur-md px-4 py-2 rounded-full 
-                   text-white transition group"
+        className="fixed top-3 left-3 md:top-5 md:left-5 z-50 flex items-center gap-2 
+        bg-transparent hover:bg-white/10 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full 
+        text-white transition group"
       >
         <ArrowLeft
           size={18}
           className="transition group-hover:-translate-x-1 group-hover:text-yellow-400"
         />
-        <span className="text-sm group-hover:text-yellow-400 transition">
+        <span className="text-xs md:text-sm group-hover:text-yellow-400 transition">
           Back
         </span>
       </button>
 
       {/* HEADER */}
-      <h1 className="text-white text-3xl font-bold mb-8 text-center">
+      <h1 className="text-white text-xl md:text-3xl font-bold mb-6 md:mb-8 text-center">
         ⭐ Top Rated Movies
       </h1>
 
       {/* GRID */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6">
 
         {movies.map((movie) => (
           <Link to={`/movie/${movie.id}`} key={movie.id}>
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+            <div className="group relative rounded-xl md:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition">
 
               <img
                 src={
@@ -93,20 +90,20 @@ const TopMovies = () => {
                     : "https://placehold.co/300x450?text=No+Image"
                 }
                 alt={movie.title}
-                className="w-full h-80 object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-60 md:h-80 object-cover object-top group-hover:scale-110 transition-transform duration-500"
               />
 
               <div className="absolute inset-0 bg-linear-to-t from-black via-black/30 to-transparent"></div>
 
               {/* ⭐ Rating */}
-              <div className="absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs px-2 py-1 rounded-full flex items-center gap-1 backdrop-blur-md">
-                <Star size={14} className="text-yellow-400 fill-yellow-400" />
+              <div className="absolute top-2 right-2 bg-black/60 text-yellow-400 text-[10px] md:text-xs px-2 py-1 rounded-full flex items-center gap-1 backdrop-blur-md">
+                <Star size={12} className="md:size-[14px] text-yellow-400 fill-yellow-400" />
                 {movie.vote_average?.toFixed(1)}
               </div>
 
-              {/* Title */}
-              <div className="absolute bottom-0 p-3 w-full">
-                <h3 className="text-white text-sm font-semibold truncate group-hover:text-yellow-400 transition">
+              {/* TITLE */}
+              <div className="absolute bottom-0 p-2 md:p-3 w-full">
+                <h3 className="text-white text-xs md:text-sm font-semibold truncate group-hover:text-yellow-400 transition">
                   {movie.title}
                 </h3>
               </div>
@@ -118,14 +115,14 @@ const TopMovies = () => {
 
       {/* LOADING */}
       {loading && (
-        <div className="text-center mt-10 text-gray-400">
+        <div className="text-center mt-8 md:mt-10 text-gray-400 text-sm md:text-base">
           Loading more movies...
         </div>
       )}
 
       {/* END */}
       {!hasMore && (
-        <div className="text-center mt-10 text-gray-500">
+        <div className="text-center mt-8 md:mt-10 text-gray-500 text-sm md:text-base">
           No more movies
         </div>
       )}

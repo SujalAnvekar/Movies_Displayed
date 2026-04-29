@@ -77,19 +77,19 @@ const MoviesList = ({ genre, searchQuery }) => {
   }, [loading, hasMore]);
 
   return (
-    <div className="bg-black min-h-screen px-6 py-8">
+    <div className="bg-black min-h-screen px-3 md:px-6 py-6 md:py-8">
 
       {/* HEADER */}
-      <h1 className="text-white text-3xl font-bold mb-8">
+      <h1 className="text-white text-xl md:text-3xl font-bold mb-6 md:mb-8">
         🔥 {searchQuery ? "Search Results" : `${genre} Movies`}
       </h1>
 
       {/* GRID */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-6">
 
         {movies.map((movie) => (
           <Link to={`/movie/${movie.id}`} key={movie.id}>
-            <div className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+            <div className="group relative rounded-xl md:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition">
 
               {/* IMAGE */}
               <img
@@ -99,20 +99,20 @@ const MoviesList = ({ genre, searchQuery }) => {
                     : "https://placehold.co/300x450?text=No+Image"
                 }
                 alt={movie.title}
-                className="w-full h-80 object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                className="w-full h-60 md:h-80 object-cover object-top group-hover:scale-110 transition-transform duration-500"
               />
 
               {/* DARK OVERLAY */}
               <div className="absolute inset-0 bg-linear-to-t from-black via-black/30 to-transparent"></div>
 
-              {/* ⭐ RATING BADGE */}
-              <div className="absolute top-2 right-2 bg-black/60 text-yellow-400 text-xs px-2 py-1 rounded-full backdrop-blur-md">
+              {/* ⭐ RATING */}
+              <div className="absolute top-2 right-2 bg-black/60 text-yellow-400 text-[10px] md:text-xs px-2 py-1 rounded-full backdrop-blur-md">
                 ⭐ {movie.vote_average.toFixed(1) || 0}
               </div>
 
-              {/* 🎬 TITLE OVER IMAGE (MAIN CHANGE) */}
-              <div className="absolute bottom-0 p-3 w-full">
-                <h3 className="text-white text-sm font-semibold truncate group-hover:text-yellow-400 transition">
+              {/* TITLE */}
+              <div className="absolute bottom-0 p-2 md:p-3 w-full">
+                <h3 className="text-white text-xs md:text-sm font-semibold truncate group-hover:text-yellow-400 transition">
                   {movie.title}
                 </h3>
               </div>
@@ -124,14 +124,14 @@ const MoviesList = ({ genre, searchQuery }) => {
 
       {/* LOADING */}
       {loading && (
-        <div className="text-center mt-10 text-gray-400">
+        <div className="text-center mt-8 md:mt-10 text-gray-400 text-sm md:text-base">
           Loading more movies...
         </div>
       )}
 
       {/* END */}
       {!hasMore && (
-        <p className="text-gray-500 text-center mt-10">
+        <p className="text-gray-500 text-center mt-8 md:mt-10 text-sm md:text-base">
           No more movies to show
         </p>
       )}
