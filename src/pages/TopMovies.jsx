@@ -97,7 +97,7 @@ const TopMovies = () => {
 
               {/* ⭐ Rating */}
               <div className="absolute top-2 right-2 bg-black/60 text-yellow-400 text-[10px] md:text-xs px-2 py-1 rounded-full flex items-center gap-1 backdrop-blur-md">
-                <Star size={12} className="md:size-[14px] text-yellow-400 fill-yellow-400" />
+                <Star size={12} className="md:size-3.5 text-yellow-400 fill-yellow-400" />
                 {movie.vote_average?.toFixed(1)}
               </div>
 
